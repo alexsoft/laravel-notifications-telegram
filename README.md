@@ -31,7 +31,7 @@ Once Laravel Notifications Telegram is installed, you need to register the servi
 ### Telegram Bot API Token
 First, talk to [@BotFather](https://core.telegram.org/bots#botfather) and generate one.
 Then put it to `config/services.php` configuration file. You may copy the example configuration below to get started:
-```
+```php
 'telegram-notifications-bot-token' => [
     'key' => env('TELEGRAM_BOT_API_TOKEN')
 ]
@@ -93,6 +93,25 @@ public function toMail($notifiable)
 
 #### Success, info or error?
 Telegram notifications also support success and error notifications.
+Just call the necessary method.
+
+```php
+/**
+ * Get the telegram representation of the notification.
+ *
+ * @param  mixed  $notifiable
+ * @return \Alexsoft\LaravelNotificationsTelegram\TelegramMessage
+ */
+public function toMail($notifiable)
+{
+    $url = url('/invoice/' . $this->invoice->id);
+
+    return (new TelegramMessage)
+        ->error() // or success()
+        ->line('Invoice could not be paid!')
+        ->action('View Invoice', $url);
+}
+```
 
 ## License
 
