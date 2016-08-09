@@ -67,7 +67,19 @@ class TelegramChannel
      */
     protected function getText(TelegramMessage $message)
     {
-        $texts[] = '<b>' . ($message->level == 'error' ? 'Whoops!' : 'Hello!') . '</b>' . "\n";
+        switch ($message->level) {
+            case 'success':
+                $word = "Hoooray! \xF0\x9F\x98\x8E";
+                break;
+            case 'error':
+                $word = "Whoops! \xF0\x9F\x98\xB0";
+                break;
+            default:
+                $word = "Hello! \xF0\x9F\x91\xBB";
+                break;
+        }
+
+        $texts[] = '<b>' . $word . '</b>' . "\n";
 
         if (count($message->introLines)) {
             $texts[] = implode("\n", $message->introLines);
