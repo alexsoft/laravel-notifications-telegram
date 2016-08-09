@@ -7,14 +7,15 @@
             "email": "alex@plekhanov.us"
         }
     ],
-    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/support": "^5.3@dev",
+        "illuminate/notifications": "^5.3@dev"
+    },
     "autoload": {
         "psr-4": {
             "Alexsoft\\LaravelNotificationsTelegram\\": "src/"
         }
     },
-    "require": {
-        "illuminate/support": "^5.3@dev",
-        "illuminate/notifications": "^5.3@dev"
-    }
+    "minimum-stability": "dev"
 }
