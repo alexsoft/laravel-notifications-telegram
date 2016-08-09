@@ -1,0 +1,20 @@
+{
+    "name": "alexsoft/laravel-notifications-telegram",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexey Plekhanov",
+            "email": "alex@plekhanov.us"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Alexsoft\\LaravelNotificationsTelegram\\": "src/"
+        }
+    },
+    "require": {
+        "illuminate/support": "^5.3@dev",
+        "illuminate/notifications": "^5.3@dev"
+    }
+}
