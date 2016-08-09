@@ -1,5 +1,9 @@
 # Laravel 5.3 Notifications to Telegram
 
+<p align="center">
+<a href="https://styleci.io/repos/65285643"><img src="https://styleci.io/repos/65285643/shield" alt="StyleCI Status"></img></a>
+</p>
+
 ## Installation
 
 [PHP](https://php.net) 5.6.4+ is required.
