@@ -15,7 +15,7 @@ class TelegramChannel
     protected $http;
 
     /**
-     * Telegram bot API key
+     * Telegram bot API key.
      *
      * @var string
      */
@@ -52,12 +52,12 @@ class TelegramChannel
             'chat_id' => $chatId,
             'text' => $this->getText($message),
             'parse_mode' => 'HTML',
-            'disable_web_page_preview' => false
+            'disable_web_page_preview' => false,
         ];
 
         // Send notification to the $notifiable instance...
         $this->http->post($this->getTelegramApiUrl(), [
-            'form_params' => $telegramMessage
+            'form_params' => $telegramMessage,
         ]);
     }
 
@@ -79,21 +79,21 @@ class TelegramChannel
                 break;
         }
 
-        $texts[] = '<b>' . $word . '</b>' . "\n";
+        $texts[] = '<b>'.$word.'</b>'."\n";
 
         if (count($message->introLines)) {
             $texts[] = implode("\n", $message->introLines);
         }
 
         if (isset($message->actionText)) {
-            $texts[] = '<a href="' . $message->actionUrl .'">' . $message->actionText . '</a>';
+            $texts[] = '<a href="'.$message->actionUrl.'">'.$message->actionText.'</a>';
         }
 
         if (count($message->outroLines)) {
             $texts[] = implode("\n", $message->outroLines);
         }
 
-        $texts[] = "\nRegards,\n" . config('app.name');
+        $texts[] = "\nRegards,\n".config('app.name');
 
         return implode("\n", $texts);
     }
@@ -103,6 +103,6 @@ class TelegramChannel
      */
     protected function getTelegramApiUrl()
     {
-        return 'https://api.telegram.org/bot' . $this->telegramBotKey . '/sendMessage';
+        return 'https://api.telegram.org/bot'.$this->telegramBotKey.'/sendMessage';
     }
 }

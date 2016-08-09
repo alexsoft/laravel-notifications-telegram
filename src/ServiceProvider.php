@@ -20,7 +20,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
-        $this->app[ChannelManager::class]->extend('telegram', function($app) {
+        $this->app[ChannelManager::class]->extend('telegram', function ($app) {
             return new TelegramChannel(new \GuzzleHttp\Client, $app['config']['services.telegram-notifications-bot-token.key']);
         });
     }
