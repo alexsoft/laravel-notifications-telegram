@@ -2,6 +2,8 @@
 
 namespace Alexsoft\LaravelNotificationsTelegram;
 
+use Illuminate\Notifications\ChannelManager;
+
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
@@ -9,11 +11,16 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
 
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
     public function boot()
     {
-        \Notification::extend('telegram', function($app) {
+        $this->app[ChannelManager::class]->extend('telegram', function($app) {
             return new TelegramChannel(new \GuzzleHttp\Client, $app['config']['services.telegram-notifications-bot-token.key']);
         });
     }
@@ -25,6 +32,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function provides()
     {
-        return [TelegramChannel::class, TelegramMessage::class];
+        return [TelegramChannel::class];
     }
 }

@@ -48,30 +48,49 @@ class TelegramChannel
 
         $message = $notification->toTelegram($notifiable);
 
-        $url = 'https://api.telegram.org/bot' . $this->telegramBotKey . '/sendMessage';
-
-        $text = '<b>' . ($message->level == 'error' ? 'Whoops!' : 'Hello!') . '</b>' . "\n\n";
-
-        $text .= implode("\n", $message->introLines) . "\n";
-
-        if (isset($message->actionText)) {
-            $text .= '<a href="' . $message->actionUrl .'">' . $message->actionText . '</a>';
-        }
-
-        $text .=  "\n" . implode("\n", $message->outroLines);
-
-        $text .= "\n\nRegards,\n" . config('app.name');
-
         $telegramMessage = [
             'chat_id' => $chatId,
-            'text' => $text,
+            'text' => $this->getText($message),
             'parse_mode' => 'HTML',
             'disable_web_page_preview' => false
         ];
 
         // Send notification to the $notifiable instance...
-        $this->http->post($url, [
+        $this->http->post($this->getTelegramApiUrl(), [
             'form_params' => $telegramMessage
         ]);
+    }
+
+    /**
+     * @param  \Alexsoft\LaravelNotificationsTelegram\TelegramMessage  $message
+     * @return string
+     */
+    protected function getText(TelegramMessage $message)
+    {
+        $texts[] = '<b>' . ($message->level == 'error' ? 'Whoops!' : 'Hello!') . '</b>' . "\n";
+
+        if (count($message->introLines)) {
+            $texts[] = implode("\n", $message->introLines);
+        }
+
+        if (isset($message->actionText)) {
+            $texts[] = '<a href="' . $message->actionUrl .'">' . $message->actionText . '</a>';
+        }
+
+        if (count($message->outroLines)) {
+            $texts[] = implode("\n", $message->outroLines);
+        }
+
+        $texts[] = "\nRegards,\n" . config('app.name');
+
+        return implode("\n", $texts);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getTelegramApiUrl()
+    {
+        return 'https://api.telegram.org/bot' . $this->telegramBotKey . '/sendMessage';
     }
 }

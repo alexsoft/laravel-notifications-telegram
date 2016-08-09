@@ -6,4 +6,5 @@ use Illuminate\Notifications\Messages\SimpleMessage;
 
 class TelegramMessage extends SimpleMessage
 {
+    //
 }
