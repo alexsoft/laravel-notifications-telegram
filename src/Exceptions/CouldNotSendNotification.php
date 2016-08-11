@@ -10,5 +10,4 @@ class CouldNotSendNotification extends RuntimeException
     {
         parent::__construct("Notifications was not sent. Telegram API responded with `{$code}: {$message}`");
     }
-
 }

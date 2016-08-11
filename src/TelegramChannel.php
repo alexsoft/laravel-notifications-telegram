@@ -69,7 +69,7 @@ class TelegramChannel
             'form_params' => $telegramMessage,
         ]);
 
-        if (!in_array($response->getStatusCode(), [200, 202])) {
+        if (! in_array($response->getStatusCode(), [200, 202])) {
             throw new CouldNotSendNotification($response->getStatusCode(), $response->getBody()->getContent());
         }
 
