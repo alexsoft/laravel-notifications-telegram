@@ -1,4 +1,6 @@
 preset: laravel
 
+linting: true
+
 finder:
     path: "src"

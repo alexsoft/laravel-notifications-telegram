@@ -84,7 +84,7 @@ Telegram messages may contain lines of text as well as a "call to action", just 
  * @param  mixed  $notifiable
  * @return \Alexsoft\LaravelNotificationsTelegram\TelegramMessage
  */
-public function toMail($notifiable)
+public function toTelegram($notifiable)
 {
     $url = url('/invoice/' . $this->invoice->id);
 
@@ -106,7 +106,7 @@ Just call the necessary method.
  * @param  mixed  $notifiable
  * @return \Alexsoft\LaravelNotificationsTelegram\TelegramMessage
  */
-public function toMail($notifiable)
+public function toTelegram($notifiable)
 {
     $url = url('/invoice/' . $this->invoice->id);
 
@@ -116,6 +116,11 @@ public function toMail($notifiable)
         ->action('View Invoice', $url);
 }
 ```
+
+## Credits
+
+- [Alex Plekhanov](https://github.com/alexsoft)
+- [All Contributors](../../contributors)
 
 ## License
 

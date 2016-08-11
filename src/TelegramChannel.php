@@ -79,6 +79,8 @@ class TelegramChannel
                 break;
         }
 
+        $texts = [];
+
         $texts[] = '<b>'.$word.'</b>'."\n";
 
         if (count($message->introLines)) {

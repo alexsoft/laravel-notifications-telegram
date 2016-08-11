@@ -1,21 +1,38 @@
 {
     "name": "alexsoft/laravel-notifications-telegram",
+    "description": "Laravel 5.3 Notifications Telegram driver",
+    "homepage": "https://github.com/alexsoft/laravel-notifications-telegram",
     "license": "MIT",
     "authors": [
         {
             "name": "Alexey Plekhanov",
-            "email": "alex@plekhanov.us"
+            "email": "alex@plekhanov.us",
+            "homepage": "https://alex.plekhanov.us",
+            "role": "Developer"
         }
     ],
     "require": {
         "php": ">=5.6.4",
+        "illuminate/notifications": "^5.3@dev",
         "illuminate/support": "^5.3@dev",
-        "illuminate/notifications": "^5.3@dev"
+        "illuminate/events": "^5.3@dev"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*"
     },
     "autoload": {
         "psr-4": {
-            "Alexsoft\\LaravelNotificationsTelegram\\": "src/"
+            "Alexsoft\\LaravelNotificationsTelegram\\": "src"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Alexsoft\\LaravelNotificationsTelegram\\Test\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
     },
     "minimum-stability": "dev"
 }
