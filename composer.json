@@ -1,6 +1,12 @@
 {
     "name": "alexsoft/laravel-notifications-telegram",
     "description": "Laravel 5.3 Notifications Telegram driver",
+    "keywords": [
+        "telegram-laravel-notifications",
+        "laravel",
+        "telegram",
+        "notifications"
+    ],
     "homepage": "https://github.com/alexsoft/laravel-notifications-telegram",
     "license": "MIT",
     "authors": [
@@ -30,6 +36,9 @@
         "psr-4": {
             "Alexsoft\\LaravelNotificationsTelegram\\Test\\": "tests"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
     },
     "config": {
         "sort-packages": true

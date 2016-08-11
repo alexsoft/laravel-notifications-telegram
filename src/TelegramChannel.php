@@ -2,6 +2,8 @@
 
 namespace Alexsoft\LaravelNotificationsTelegram;
 
+use Alexsoft\LaravelNotificationsTelegram\Events\MessageWasSent;
+use Alexsoft\LaravelNotificationsTelegram\Events\SendingMessage;
 use GuzzleHttp\Client as HttpClient;
 use Illuminate\Notifications\Notification;
 
@@ -48,6 +50,12 @@ class TelegramChannel
 
         $message = $notification->toTelegram($notifiable);
 
+        $shouldNotSendMessage = event(new SendingMessage($notifiable, $notification), [], true) === false;
+
+        if ($shouldNotSendMessage) {
+            return;
+        }
+
         $telegramMessage = [
             'chat_id' => $chatId,
             'text' => $this->getText($message),
@@ -59,6 +67,8 @@ class TelegramChannel
         $this->http->post($this->getTelegramApiUrl(), [
             'form_params' => $telegramMessage,
         ]);
+
+        event(new MessageWasSent($notifiable, $notification));
     }
 
     /**
