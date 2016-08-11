@@ -4,6 +4,7 @@ namespace Alexsoft\LaravelNotificationsTelegram;
 
 use Alexsoft\LaravelNotificationsTelegram\Events\MessageWasSent;
 use Alexsoft\LaravelNotificationsTelegram\Events\SendingMessage;
+use Alexsoft\LaravelNotificationsTelegram\Exceptions\CouldNotSendNotification;
 use GuzzleHttp\Client as HttpClient;
 use Illuminate\Notifications\Notification;
 
@@ -64,9 +65,13 @@ class TelegramChannel
         ];
 
         // Send notification to the $notifiable instance...
-        $this->http->post($this->getTelegramApiUrl(), [
+        $response = $this->http->post($this->getTelegramApiUrl(), [
             'form_params' => $telegramMessage,
         ]);
+
+        if (!in_array($response->getStatusCode(), [200, 202])) {
+            throw new CouldNotSendNotification($response->getStatusCode(), $response->getBody()->getContent());
+        }
 
         event(new MessageWasSent($notifiable, $notification));
     }
