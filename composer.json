@@ -11,7 +11,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Alexey Plekhanov",
+            "name": "Alex Plekhanov",
             "email": "alex@plekhanov.us",
             "homepage": "https://alex.plekhanov.us",
             "role": "Developer"
@@ -36,6 +36,9 @@
         "psr-4": {
             "Alexsoft\\LaravelNotificationsTelegram\\Test\\": "tests"
         }
+    },
+    "suggest": {
+        "laravel-notification-channels/telegram": "This package is deprecated. Please use laravel-notification-channels vendor"
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
