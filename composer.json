@@ -1,6 +1,6 @@
 {
     "name": "alexsoft/laravel-notifications-telegram",
-    "description": "Laravel 5.3 Notifications Telegram driver",
+    "description": "[DEPRECATED] Laravel 5.3 Notifications Telegram driver",
     "keywords": [
         "telegram-laravel-notifications",
         "laravel",
