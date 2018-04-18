@@ -1,3 +1,6 @@
+# [DEPRECATED]
+### Please use https://github.com/laravel-notification-channels/telegram
+
 # Laravel 5.3 Notifications to Telegram
 
 <p align="center">
